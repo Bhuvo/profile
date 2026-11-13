@@ -1,0 +1,78 @@
+import type { SkillCategory } from '../types'
+
+export const skillCategories: SkillCategory[] = [
+  {
+    title: 'Programming Languages',
+    subtitle: 'Core languages for AI systems, backend, and applications',
+    iconName: 'Code2',
+    color: 'from-purple-500 to-indigo-500',
+    borderColor: 'hover:border-purple-500/50',
+    skills: [
+      { name: 'Python', level: 'Backend & AI', highlight: true },
+      { name: 'Dart', level: 'Mobile & Web', highlight: true },
+      { name: 'JavaScript', level: 'Frontend & Scripting' },
+      { name: 'TypeScript', level: 'Type-safe Apps' },
+    ],
+  },
+  {
+    title: 'AI & Generative AI',
+    subtitle: 'LLMs, intelligent agents, RAG, and cognitive architectures',
+    iconName: 'Cpu',
+    color: 'from-cyan-400 to-blue-500',
+    borderColor: 'hover:border-cyan-400/50',
+    skills: [
+      { name: 'Large Language Models (LLMs)', highlight: true },
+      { name: 'OpenAI API', highlight: true },
+      { name: 'Prompt Engineering' },
+      { name: 'Retrieval-Augmented Generation (RAG)', highlight: true },
+      { name: 'LangChain', highlight: true },
+      { name: 'AI Agents' },
+      { name: 'LLM Integrations' },
+      { name: 'Hugging Face' },
+    ],
+  },
+  {
+    title: 'Backend Development',
+    subtitle: 'High-throughput APIs, databases, and microservices',
+    iconName: 'Server',
+    color: 'from-indigo-500 to-violet-600',
+    borderColor: 'hover:border-indigo-500/50',
+    skills: [
+      { name: 'FastAPI', highlight: true },
+      { name: 'Django' },
+      { name: 'REST APIs', highlight: true },
+      { name: 'WebSockets' },
+      { name: 'PostgreSQL', highlight: true },
+      { name: 'Firebase' },
+    ],
+  },
+  {
+    title: 'Frontend & Mobile',
+    subtitle: 'Fluid cross-platform interfaces and reactive UI',
+    iconName: 'Layout',
+    color: 'from-blue-400 to-indigo-500',
+    borderColor: 'hover:border-blue-400/50',
+    skills: [
+      { name: 'React.js', highlight: true },
+      { name: 'Flutter', highlight: true },
+      { name: 'HTML' },
+      { name: 'CSS' },
+      { name: 'Tailwind CSS', highlight: true },
+    ],
+  },
+  {
+    title: 'Tools & Platforms',
+    subtitle: 'Containerization, version control, and developer workflows',
+    iconName: 'Wrench',
+    color: 'from-violet-400 to-cyan-500',
+    borderColor: 'hover:border-violet-400/50',
+    skills: [
+      { name: 'Git' },
+      { name: 'GitHub', highlight: true },
+      { name: 'Docker' },
+      { name: 'Vercel' },
+      { name: 'Postman' },
+      { name: 'VS Code' },
+    ],
+  },
+]
