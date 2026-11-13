@@ -31,28 +31,28 @@ export function ParticlesBackground() {
 
     window.addEventListener('resize', handleResize)
 
-    // Palette of luminous cyberpunk / cosmic particle colors
+    // Vibrant Cyberpunk & Cosmic Nebula Palette
     const colors = [
-      '6, 182, 212',   // Neon Cyan
+      '0, 240, 255',   // Electric Cyan
       '217, 70, 239',  // Vivid Fuchsia
-      '139, 92, 246',  // Electric Purple
-      '244, 63, 94',   // Rose Pink
+      '139, 92, 246',  // Neon Purple
+      '251, 113, 133', // Rose Pink
       '16, 185, 129',  // Neon Emerald
       '245, 158, 11',  // Sunburst Amber
     ]
 
-    const count = Math.min(Math.floor((width * height) / 18000), 85)
+    const count = Math.min(Math.floor((width * height) / 16000), 95)
     const particles: Particle[] = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      radius: Math.random() * 2.2 + 0.8,
-      alpha: Math.random() * 0.6 + 0.25,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 2.4 + 1.0,
+      alpha: Math.random() * 0.65 + 0.3,
       color: colors[Math.floor(Math.random() * colors.length)],
     }))
 
-    // Mouse proximity tracking for gentle interactive repulsion
+    // Mouse proximity tracking for interactive repulsion
     let mouseX = -1000
     let mouseY = -1000
 
@@ -67,7 +67,7 @@ export function ParticlesBackground() {
       ctx.clearRect(0, 0, width, height)
 
       // 1. Draw glowing connecting lines between close particles
-      const maxConnectDist = 110
+      const maxConnectDist = 120
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
@@ -75,12 +75,12 @@ export function ParticlesBackground() {
           const dist = Math.sqrt(dx * dx + dy * dy)
 
           if (dist < maxConnectDist) {
-            const lineAlpha = (1 - dist / maxConnectDist) * 0.18
+            const lineAlpha = (1 - dist / maxConnectDist) * 0.22
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
             ctx.strokeStyle = `rgba(${particles[i].color}, ${lineAlpha})`
-            ctx.lineWidth = 0.8
+            ctx.lineWidth = 1.0
             ctx.stroke()
           }
         }
@@ -94,8 +94,8 @@ export function ParticlesBackground() {
         const mdx = p.x - mouseX
         const mdy = p.y - mouseY
         const mDist = Math.sqrt(mdx * mdx + mdy * mdy)
-        if (mDist < 120 && mDist > 0) {
-          const force = (120 - mDist) / 120 * 0.8
+        if (mDist < 140 && mDist > 0) {
+          const force = ((140 - mDist) / 140) * 1.0
           p.x += (mdx / mDist) * force
           p.y += (mdy / mDist) * force
         }
@@ -112,8 +112,8 @@ export function ParticlesBackground() {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`
-        ctx.shadowBlur = 10
-        ctx.shadowColor = `rgba(${p.color}, 0.8)`
+        ctx.shadowBlur = 14
+        ctx.shadowColor = `rgba(${p.color}, 0.9)`
         ctx.fill()
       }
 
@@ -134,30 +134,30 @@ export function ParticlesBackground() {
       {/* Deep cosmic foundation */}
       <div className="absolute inset-0 bg-[#070510]" />
       
-      {/* Vibrant Cosmic Nebula Clouds with animated breathing glows */}
-      {/* Top Left: Deep Violet / Electric Purple */}
-      <div className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#5B21B6]/30 via-[#8B5CF6]/25 to-transparent blur-[140px] animate-pulse-glow" />
+      {/* High-Vibrancy Cosmic Nebula Clouds with smooth breathing animation */}
+      {/* Top Left: Electric Purple & Deep Violet */}
+      <div className="absolute -top-32 -left-32 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-[#5B21B6]/35 via-[#8B5CF6]/30 to-transparent blur-[140px] animate-pulse-glow" />
 
       {/* Top Right: Electric Cyan & Aqua */}
-      <div className="absolute -top-20 -right-20 w-[650px] h-[650px] rounded-full bg-gradient-to-bl from-[#06B6D4]/25 via-[#22D3EE]/20 to-transparent blur-[150px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+      <div className="absolute -top-20 -right-20 w-[700px] h-[700px] rounded-full bg-gradient-to-bl from-[#00F0FF]/30 via-[#38BDF8]/25 to-transparent blur-[150px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
 
       {/* Center Left: Vivid Fuchsia / Magenta */}
-      <div className="absolute top-1/3 -left-40 w-[550px] h-[550px] rounded-full bg-gradient-to-r from-[#D946EF]/25 via-[#EC4899]/20 to-transparent blur-[160px] animate-pulse-glow" style={{ animationDelay: '4s' }} />
+      <div className="absolute top-1/3 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-[#D946EF]/30 via-[#EC4899]/25 to-transparent blur-[160px] animate-pulse-glow" style={{ animationDelay: '4s' }} />
 
-      {/* Center Right: Deep Violet Core */}
-      <div className="absolute top-1/2 right-10 w-[500px] h-[500px] rounded-full bg-gradient-to-l from-[#7C3AED]/25 via-[#8B5CF6]/15 to-transparent blur-[150px]" />
+      {/* Center Right: Deep Indigo & Cyan Core */}
+      <div className="absolute top-1/2 right-5 w-[550px] h-[550px] rounded-full bg-gradient-to-l from-[#7C3AED]/30 via-[#00F0FF]/20 to-transparent blur-[150px]" />
 
-      {/* Bottom Left: Electric Emerald & Teal */}
-      <div className="absolute -bottom-24 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#10B981]/20 via-[#06B6D4]/15 to-transparent blur-[160px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+      {/* Bottom Left: Neon Emerald & Teal */}
+      <div className="absolute -bottom-24 left-1/4 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-[#10B981]/25 via-[#06B6D4]/20 to-transparent blur-[160px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
 
       {/* Bottom Right: Sunburst Rose & Amber shimmer */}
-      <div className="absolute -bottom-20 -right-20 w-[550px] h-[550px] rounded-full bg-gradient-to-tl from-[#F43F5E]/20 via-[#F59E0B]/12 to-transparent blur-[150px]" />
+      <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] rounded-full bg-gradient-to-tl from-[#F43F5E]/25 via-[#F59E0B]/18 to-transparent blur-[150px]" />
 
       {/* Subtle cosmic grid lines */}
       <div className="absolute inset-0 cosmic-grid opacity-60" />
 
       {/* Floating Canvas Particles */}
-      <canvas ref={canvasRef} className="absolute inset-0 opacity-90" />
+      <canvas ref={canvasRef} className="absolute inset-0 opacity-95" />
     </div>
   )
 }
