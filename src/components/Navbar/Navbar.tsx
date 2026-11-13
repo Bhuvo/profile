@@ -1,199 +1,202 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X, FileText } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "../UI/Icons";
-import { socialLinks } from "../../data/social";
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, FileDown } from 'lucide-react'
+import { personalData } from '../../data/personal'
+import { socialLinks } from '../../data/social'
+import { GithubIcon, LinkedinIcon } from '../UI/SocialIcons'
 
-const navItems = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Highlights", href: "#highlights" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" }
-];
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Education', href: '#education' },
+  { name: 'Contact', href: '#contact' },
+]
 
-export const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export function Navbar() {
+  const [activeSection, setActiveSection] = useState('home')
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const githubLink = socialLinks.find((l) => l.name === 'GitHub')?.url || 'https://github.com/hema-official'
+  const linkedinLink = socialLinks.find((l) => l.name === 'LinkedIn')?.url || 'https://www.linkedin.com/in/hemalatha-p-837462424/'
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30)
 
-      // Determine active section
-      const sections = navItems.map((item) => item.href.substring(1));
-      const scrollPos = window.scrollY + 200;
+      // Active section spy
+      const sections = navLinks.map((link) => link.href.substring(1))
+      const scrollPosition = window.scrollY + 160
 
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
+        const el = document.getElementById(sections[i])
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i])
+          break
         }
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#080812]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-3"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 lg:px-8 pt-4 transition-all duration-300">
+      <nav
+        className={`max-w-7xl mx-auto flex items-center justify-between px-5 py-3 rounded-2xl transition-all duration-300 ${
+          isScrolled
+            ? 'glass-panel shadow-[0_8px_32px_rgba(7,5,16,0.85)] border-purple-500/40'
+            : 'bg-[#0D081D]/80 backdrop-blur-md border border-purple-500/25 shadow-lg'
+        }`}
+        aria-label="Main Navigation"
+      >
+        {/* Brand Logo with Colorful Holographic Ring */}
         <a
-          href="#hero"
-          className="group flex items-center gap-2.5 font-bold text-lg md:text-xl tracking-wider text-white transition-all duration-300"
+          href="#home"
+          className="group flex items-center gap-2.5 font-display font-bold text-lg tracking-wider text-[#F8FAFC]"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1.5px] shadow-[0_0_15px_rgba(139,92,246,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] transition-all duration-300">
-            <div className="w-full h-full bg-[#0D0D1E] rounded-[10px] flex items-center justify-center">
-              <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-300 text-sm">
-                BS
-              </span>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#8B5CF6] via-[#D946EF] to-[#06B6D4] p-[1.5px] flex items-center justify-center group-hover:shadow-[0_0_20px_#D946EF] transition-shadow">
+            <div className="w-full h-full bg-[#070510] rounded-[6.5px] flex items-center justify-center font-mono text-sm text-[#F8FAFC] font-bold">
+              H
             </div>
           </div>
-          <span className="font-mono font-semibold tracking-widest text-white group-hover:text-cyan-300 transition-colors">
-            BHUVANESWARAN<span className="text-violet-400">.S</span>
+          <span className="flex items-center">
+            HEMALATHA<span className="text-[#06B6D4] animate-pulse">.</span>
           </span>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-[#151528]/50 backdrop-blur-md">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
+        {/* Desktop Navigation Links */}
+        <div className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-xl bg-[#070510]/60 border border-purple-500/20 shadow-inner">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.substring(1)
             return (
               <a
-                key={item.href}
-                href={item.href}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? "text-white font-semibold"
-                    : "text-[#A1A1B5] hover:text-white hover:bg-white/5"
+                key={link.name}
+                href={link.href}
+                className={`relative px-3.5 py-1.5 text-xs font-medium tracking-wide transition-colors rounded-lg ${
+                  isActive ? 'text-[#F8FAFC]' : 'text-[#A5A0B5] hover:text-[#C4B5FD]'
                 }`}
               >
                 {isActive && (
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-600/30 to-cyan-500/30 border border-violet-500/50 shadow-[0_0_12px_rgba(139,92,246,0.3)] -z-10" />
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute inset-0 bg-gradient-to-r from-[#7C3AED] via-[#D946EF]/60 to-[#06B6D4]/50 rounded-lg border border-purple-300/40 shadow-[0_0_15px_rgba(217,70,239,0.4)]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
                 )}
-                {item.label}
+                <span className="relative z-10 font-semibold">{link.name}</span>
               </a>
-            );
+            )
           })}
-        </nav>
+        </div>
 
-        {/* Right Action Icons & Resume */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Right CTA Actions: Socials & Resume */}
+        <div className="hidden sm:flex items-center gap-2.5">
           <a
-            href={socialLinks.github}
+            href={githubLink}
             target="_blank"
             rel="noopener noreferrer"
+            className="p-2.5 rounded-xl text-[#C4B5FD] hover:text-[#06B6D4] hover:bg-purple-950/50 border border-purple-500/20 hover:border-cyan-400/40 transition-all hover:scale-105"
             aria-label="GitHub Profile"
-            className="p-2 rounded-lg border border-white/10 bg-[#151528]/60 text-[#A1A1B5] hover:text-white hover:border-violet-500/50 hover:bg-[#1A1A32] transition-all duration-200"
           >
             <GithubIcon className="w-4 h-4" />
           </a>
           <a
-            href={socialLinks.linkedin}
+            href={linkedinLink}
             target="_blank"
             rel="noopener noreferrer"
+            className="p-2.5 rounded-xl text-[#C4B5FD] hover:text-[#D946EF] hover:bg-purple-950/50 border border-purple-500/20 hover:border-fuchsia-400/40 transition-all hover:scale-105"
             aria-label="LinkedIn Profile"
-            className="p-2 rounded-lg border border-white/10 bg-[#151528]/60 text-[#A1A1B5] hover:text-white hover:border-cyan-500/50 hover:bg-[#1A1A32] transition-all duration-200"
           >
             <LinkedinIcon className="w-4 h-4" />
           </a>
           <a
-            href={socialLinks.resumeUrl}
-            download="bhuvanesh_resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs xl:text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-cyan-500 shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all duration-300"
+            href={personalData.resumeUrl}
+            download="Hemalatha_P_Resume.pdf"
+            className="group relative flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#7C3AED] via-[#D946EF] to-[#06B6D4] text-[#F8FAFC] text-xs font-bold tracking-wide border border-white/20 shadow-[0_0_20px_rgba(217,70,239,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all hover:scale-105 cursor-pointer overflow-hidden"
           >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Resume</span>
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-300 animate-ping" />
+            <FileDown className="w-3.5 h-3.5 text-[#F8FAFC] group-hover:translate-y-0.5 transition-transform" />
+            <span>RESUME</span>
           </a>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <div className="flex md:hidden items-center gap-2">
-          <a
-            href={socialLinks.resumeUrl}
-            download="bhuvanesh_resume.pdf"
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-violet-600/80 border border-violet-400/40"
-          >
-            Resume
-          </a>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Navigation Menu"
-            className="p-2 rounded-lg border border-white/10 bg-[#151528]/80 text-[#A1A1B5] hover:text-white focus:outline-none"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
+        {/* Mobile Menu Toggle Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden p-2 rounded-xl text-[#A5A0B5] hover:text-[#F8FAFC] bg-[#140E26] border border-purple-500/30 cursor-pointer"
+          aria-label="Toggle navigation menu"
+        >
+          {isMobileMenuOpen ? <X className="w-5 h-5 text-[#06B6D4]" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </nav>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-b border-white/10 bg-[#0A0A18]/95 backdrop-blur-2xl px-6 py-6 transition-all duration-300">
-          <div className="flex flex-col gap-2">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
+      {/* Mobile Drawer Navigation */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -15, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden mt-2 max-w-7xl mx-auto rounded-2xl glass-panel border-purple-500/40 p-5 shadow-2xl"
+          >
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.substring(1)
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+                      isActive
+                        ? 'bg-gradient-to-r from-purple-600/40 to-cyan-500/40 text-[#67E8F9] border border-purple-400/50 shadow-md'
+                        : 'text-[#A5A0B5] hover:bg-purple-900/30 hover:text-[#F8FAFC]'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                )
+              })}
+
+              <div className="pt-3 mt-2 border-t border-purple-500/20 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <a
+                    href={githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-purple-900/40 text-[#C4B5FD] hover:text-[#06B6D4]"
+                    aria-label="GitHub"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={linkedinLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-purple-900/40 text-[#C4B5FD] hover:text-[#D946EF]"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                  </a>
+                </div>
                 <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                    isActive
-                      ? "bg-violet-600/20 text-cyan-300 border border-violet-500/40 font-semibold"
-                      : "text-[#A1A1B5] hover:text-white hover:bg-white/5"
-                  }`}
+                  href={personalData.resumeUrl}
+                  download="Hemalatha_P_Resume.pdf"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#7C3AED] via-[#D946EF] to-[#06B6D4] text-[#F8FAFC] text-xs font-bold"
                 >
-                  {item.label}
+                  <FileDown className="w-3.5 h-3.5 text-[#F8FAFC]" />
+                  <span>DOWNLOAD RESUME</span>
                 </a>
-              );
-            })}
-          </div>
-
-          <div className="pt-6 mt-4 border-t border-white/10 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl border border-white/10 bg-[#151528] text-white"
-              >
-                <GithubIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl border border-white/10 bg-[#151528] text-white"
-              >
-                <LinkedinIcon className="w-4 h-4" />
-              </a>
+              </div>
             </div>
-            <a
-              href={socialLinks.resumeUrl}
-              download="bhuvanesh_resume.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-lg"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Download PDF</span>
-            </a>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
-  );
-};
+  )
+}

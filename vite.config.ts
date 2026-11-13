@@ -8,4 +8,18 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('three')) {
+            return 'three'
+          }
+          if (id.includes('framer-motion')) {
+            return 'framer'
+          }
+        },
+      },
+    },
+  },
 })

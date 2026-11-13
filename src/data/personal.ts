@@ -1,45 +1,51 @@
-import type { PersonalInfo } from '../types'
-
-export const personalInfo: PersonalInfo = {
-  name: 'Bhuvaneswaran S',
-  preferredName: 'Bhuvanesh',
-  title: 'Software Developer | AI Engineer | GenAI Developer',
-  heroHeadline: 'Engineering Intelligence.',
-  heroHeadlineHighlight: 'Building the Future.',
-  heroDescription:
-    'I build intelligent applications, AI-powered products, scalable backend systems, and modern digital experiences that solve real-world problems.',
-  roles: ['Software Developer', 'AI Engineer', 'GenAI Developer', 'Full Stack Engineer'],
-  status: 'AVAILABLE FOR NEW OPPORTUNITIES',
-  aboutIntro: [
-    "I'm a Software Developer with hands-on experience building and deploying production applications across mobile, web, and backend technologies.",
-    'My development journey started with application engineering, where I worked on Flutter-based products, performance optimization, and real-world business applications.',
-    'Over time, my interests expanded toward Python, Generative AI, Large Language Models, Retrieval-Augmented Generation, and intelligent automation.',
-    'I enjoy transforming complex ideas into practical software products, exploring emerging technologies, and continuously improving how applications are designed and engineered.',
-  ],
-  careerInterests: [
-    'AI Engineer',
-    'Generative AI Engineer',
-    'Python Developer',
-    'Software Engineer',
-    'Full Stack Developer',
-  ],
-  stats: [
-    {
-      label: 'Flutter Mobile Apps',
-      value: '13+',
-      subtext: 'Built with reactive architectures & cross-platform UX',
-      highlight: true,
-    },
-    {
-      label: 'Flutter Websites',
-      value: '3',
-      subtext: 'Responsive web applications built with Dart & Flutter Web',
-    },
-    {
-      label: 'Navigation Latency',
-      value: '98ms',
-      subtext: 'Superbill optimization achieved from ~1.7s (over 94% reduction)',
-      highlight: true,
-    },
-  ],
+export interface PersonalInfo {
+  name: string
+  preferredName: string
+  title: string
+  tagline: string
+  heroSupportingStatement: string
+  heroDescriptionAlt: string
+  location: string
+  email: string
+  resumeUrl: string
+  aboutStory: {
+    heading: string
+    subheading: string
+    paragraphs: string[]
+  }
+  roles: string[]
+  profileImage: string
 }
+
+export const personalData: PersonalInfo = {
+  name: "Hemalatha P.",
+  preferredName: "Hemalatha",
+  title: "Python Developer | AI / ML Engineer | Generative AI Enthusiast",
+  tagline: "WHERE INTELLIGENCE MEETS IMAGINATION.",
+  heroSupportingStatement:
+    "I transform ideas into intelligent applications through Python, Artificial Intelligence, Machine Learning, and Generative AI.",
+  heroDescriptionAlt:
+    "Passionate about building intelligent systems, exploring emerging AI technologies, and developing scalable software solutions that create meaningful impact.",
+  location: "Chennai, India",
+  email: "hemalathaofficial1124@gmail.com",
+  resumeUrl: "/resume.pdf",
+  aboutStory: {
+    heading: "THE MIND BEHIND THE MACHINE",
+    subheading: "Curiosity drives innovation. Learning transforms possibility into reality.",
+    paragraphs: [
+      "I'm Hemalatha, a Python Developer with a strong interest in Artificial Intelligence, Machine Learning, and Generative AI.",
+      "My journey in technology began with software development and application engineering. Through internships and professional development experience, I gained exposure to Python backend systems, Flutter applications, REST APIs, data visualization, and software development workflows.",
+      "Currently pursuing my M.Tech in Artificial Intelligence at SRM Institute of Science and Technology, I am expanding my understanding of intelligent systems, machine learning, and modern AI architectures.",
+      "I enjoy exploring how technology can solve real-world challenges and building applications that combine practical software engineering with emerging AI capabilities.",
+    ],
+  },
+  roles: [
+    "Python Developer",
+    "AI / Machine Learning Developer",
+    "Generative AI Enthusiast",
+    "Backend API Developer",
+    "Software Developer",
+  ],
+  profileImage: "/images/hema_profile.png",
+}
+

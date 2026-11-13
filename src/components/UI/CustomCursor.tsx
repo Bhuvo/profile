@@ -1,93 +1,108 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-export const CustomCursor: React.FC = () => {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
-  const [trailingPos, setTrailingPos] = useState({ x: -100, y: -100 });
-  const [isPointer, setIsPointer] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+interface TrailDot {
+  x: number
+  y: number
+  id: number
+  color: string
+}
+
+const trailColors = [
+  '#06B6D4', // Neon Cyan
+  '#D946EF', // Vivid Fuchsia
+  '#8B5CF6', // Electric Purple
+  '#10B981', // Neon Emerald
+  '#F59E0B', // Sunburst Gold
+]
+
+export function CustomCursor() {
+  const [position, setPosition] = useState({ x: -100, y: -100 })
+  const [trail, setTrail] = useState<TrailDot[]>([])
+  const [isPointer, setIsPointer] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    // Only enable on non-touch devices with fine pointers
-    if (window.matchMedia("(pointer: coarse)").matches) {
-      return;
+    // Only enable on desktop devices with fine pointer and no reduced-motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+
+    if (prefersReducedMotion || isTouch) return
+
+    setIsVisible(true)
+
+    let counter = 0
+    const onMouseMove = (e: MouseEvent) => {
+      const { clientX: x, clientY: y } = e
+      setPosition({ x, y })
+
+      counter++
+      if (counter % 2 === 0) {
+        const color = trailColors[counter % trailColors.length]
+        setTrail((prev) => [
+          ...prev.slice(-7),
+          { x, y, id: Date.now() + Math.random(), color },
+        ])
+      }
+
+      // Check if hovering over clickable element
+      const target = e.target as HTMLElement | null
+      if (target) {
+        const clickable = target.closest('a, button, [role="button"], input, textarea, select, label')
+        setIsPointer(!!clickable)
+      }
     }
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+    const onMouseLeave = () => setIsVisible(false)
+    const onMouseEnter = () => setIsVisible(true)
 
-      const target = e.target as HTMLElement;
-      const clickable =
-        target.closest("button") ||
-        target.closest("a") ||
-        target.closest("input") ||
-        target.closest("textarea") ||
-        target.closest("[role='button']") ||
-        target.tagName === "BUTTON" ||
-        target.tagName === "A";
-
-      setIsPointer(!!clickable);
-    };
-
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
-
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
-
-    let frameId: number;
-    const animateTrail = () => {
-      setTrailingPos((prev) => ({
-        x: prev.x + (position.x - prev.x) * 0.18,
-        y: prev.y + (position.y - prev.y) * 0.18
-      }));
-      frameId = requestAnimationFrame(animateTrail);
-    };
-    frameId = requestAnimationFrame(animateTrail);
+    window.addEventListener('mousemove', onMouseMove)
+    document.addEventListener('mouseleave', onMouseLeave)
+    document.addEventListener('mouseenter', onMouseEnter)
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      cancelAnimationFrame(frameId);
-    };
-  }, [position, isVisible]);
+      window.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseleave', onMouseLeave)
+      document.removeEventListener('mouseenter', onMouseEnter)
+    }
+  }, [])
 
-  if (!isVisible) return null;
+  if (!isVisible) return null
 
   return (
-    <>
-      {/* Center sharp dot */}
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden transition-opacity duration-300">
+      {/* Rainbow spark trail particles */}
+      {trail.map((dot, index) => {
+        const opacity = ((index + 1) / trail.length) * 0.55
+        const size = (index + 1) * 1.6 + 2.5
+        return (
+          <div
+            key={dot.id}
+            className="absolute rounded-full -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 pointer-events-none"
+            style={{
+              left: `${dot.x}px`,
+              top: `${dot.y}px`,
+              width: `${size}px`,
+              height: `${size}px`,
+              backgroundColor: dot.color,
+              opacity,
+              boxShadow: `0 0 12px ${dot.color}`,
+            }}
+          />
+        )
+      })}
+
+      {/* Main Cursor Orb */}
       <div
-        className="fixed pointer-events-none z-50 rounded-full transition-transform duration-75 ease-out"
+        className={`absolute rounded-full -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out pointer-events-none ${
+          isPointer
+            ? 'w-8 h-8 bg-cyan-400/20 border-2 border-[#06B6D4] scale-125 shadow-[0_0_20px_#06B6D4]'
+            : 'w-3.5 h-3.5 bg-gradient-to-tr from-[#D946EF] to-[#06B6D4] shadow-[0_0_15px_#D946EF]'
+        }`}
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
-          transform: `translate(-50%, -50%) scale(${isPointer ? 1.5 : 1})`,
-          width: "8px",
-          height: "8px",
-          backgroundColor: isPointer ? "#22D3EE" : "#8B5CF6",
-          boxShadow: isPointer
-            ? "0 0 12px #22D3EE, 0 0 20px #22D3EE"
-            : "0 0 10px #8B5CF6"
         }}
       />
-      {/* Outer ambient trailing ring */}
-      <div
-        className="fixed pointer-events-none z-50 rounded-full transition-all duration-150 ease-out"
-        style={{
-          left: `${trailingPos.x}px`,
-          top: `${trailingPos.y}px`,
-          transform: `translate(-50%, -50%) scale(${isPointer ? 1.4 : 1})`,
-          width: isPointer ? "44px" : "32px",
-          height: isPointer ? "44px" : "32px",
-          border: `1.5px solid ${isPointer ? "rgba(34, 211, 238, 0.7)" : "rgba(139, 92, 246, 0.5)"}`,
-          background: isPointer
-            ? "rgba(34, 211, 238, 0.08)"
-            : "rgba(139, 92, 246, 0.04)"
-        }}
-      />
-    </>
-  );
-};
+    </div>
+  )
+}

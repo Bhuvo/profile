@@ -1,84 +1,82 @@
 import { useState } from 'react'
+import { CinematicIntro } from './components/Intro/CinematicIntro'
 import { CustomCursor } from './components/UI/CustomCursor'
 import { ParticlesBackground } from './components/UI/ParticlesBackground'
-import { ScrollToTop } from './components/UI/ScrollToTop'
 import { Navbar } from './components/Navbar/Navbar'
 import { Hero } from './components/Hero/Hero'
 import { About } from './components/About/About'
-import { Experience } from './components/Experience/Experience'
+import { Highlights } from './components/Highlights/Highlights'
 import { Skills } from './components/Skills/Skills'
+import { Experience } from './components/Experience/Experience'
 import { Projects } from './components/Projects/Projects'
-import { Achievements } from './components/Achievements/Achievements'
 import { Education } from './components/Education/Education'
-import { CurrentFocus } from './components/CurrentFocus/CurrentFocus'
+import { Certifications } from './components/Certifications/Certifications'
+import { LearningUniverse } from './components/Learning/LearningUniverse'
 import { GitHubShowcase } from './components/GitHub/GitHubShowcase'
 import { Contact } from './components/Contact/Contact'
 import { Footer } from './components/Footer/Footer'
-import { FloatingChatButton } from './components/AIChat/FloatingChatButton'
-import { AIChatModal } from './components/AIChat/AIChatModal'
+import { HemaAI } from './components/HemaAI/HemaAI'
 
 export function App() {
-  const [isAIChatOpen, setIsAIChatOpen] = useState(false)
+  const [introCompleted, setIntroCompleted] = useState(false)
 
   return (
-    <div className="relative min-h-screen bg-[#080812] text-white selection:bg-purple-500/30 selection:text-cyan-300">
-      {/* Interactive Custom Desktop Cursor */}
+    <div className="relative min-h-screen bg-[#080611] text-[#F8FAFC] selection:bg-[#8B5CF6]/30 selection:text-[#67E8F9] overflow-x-hidden font-body">
+      {/* 1. Cinematic Neural Seed Introduction */}
+      {!introCompleted && (
+        <CinematicIntro onComplete={() => setIntroCompleted(true)} />
+      )}
+
+      {/* 2. Desktop Custom Cursor & Particle Trail */}
       <CustomCursor />
 
-      {/* Cyber Ambient Background Grid & Floating Particles */}
+      {/* 3. Deep Cosmic Animated Atmosphere */}
       <ParticlesBackground />
 
-      {/* Sticky Futuristic Navigation */}
+      {/* 4. Floating Glass Navigation Bar */}
       <Navbar />
 
-      {/* Main Content Flow */}
-      <main className="relative z-10 flex flex-col">
-        {/* Section 2: Hero Section */}
+      {/* Main Page Flow */}
+      <main className="relative z-10">
+        {/* 5. Signature Hero Section with 3D Neural Sphere */}
         <Hero />
 
-        {/* Section 3: About Me */}
+        {/* 6. About Section: Her Story & Technical Trajectory */}
         <About />
 
-        {/* Section 5: Professional Experience Timeline */}
-        <Experience />
+        {/* 7. Career Highlights: My Journey in Numbers */}
+        <Highlights />
 
-        {/* Section 4: Technical Skills Arsenal */}
+        {/* 8. Technical Skills: The Intelligence Stack */}
         <Skills />
 
-        {/* Section 6: Featured Projects & Superbill Optimization */}
+        {/* 9. Professional Experience: The Career Journey */}
+        <Experience />
+
+        {/* 10. Project Showcase: Real Projects & Case Studies */}
         <Projects />
 
-        {/* Section 7: Engineering Highlights (Metrics & Impact) */}
-        <Achievements />
-
-        {/* Section 8: Education Foundation */}
+        {/* 11. Academic Foundation: Education */}
         <Education />
 
-        {/* Section 9: Current Focus (Exploration & Research) */}
-        <CurrentFocus />
+        {/* 12. Verified Technical Certifications */}
+        <Certifications />
 
-        {/* Section 10: GitHub Showcase */}
+        {/* 13. Current Learning Universe: Exploring What's Next */}
+        <LearningUniverse />
+
+        {/* 14. GitHub Showcase & Code Repositories */}
         <GitHubShowcase />
 
-        {/* Section 11: Contact & Collaboration Form */}
+        {/* 15. Contact Section: Direct Channels & Interactive Form */}
         <Contact />
       </main>
 
-      {/* Section 12: Footer */}
+      {/* 16. Footer with Back-to-Top Button */}
       <Footer />
 
-      {/* Navigation Utilities */}
-      <ScrollToTop />
-
-      {/* Bonus Feature: Bhuvaney AI Assistant */}
-      <FloatingChatButton
-        isOpen={isAIChatOpen}
-        onClick={() => setIsAIChatOpen((prev) => !prev)}
-      />
-      <AIChatModal
-        isOpen={isAIChatOpen}
-        onClose={() => setIsAIChatOpen(false)}
-      />
+      {/* 17. Floating HEMA AI Assistant */}
+      <HemaAI />
     </div>
   )
 }

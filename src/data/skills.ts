@@ -1,78 +1,126 @@
-import type { SkillCategory } from '../types'
+export interface SkillCategory {
+  id: string
+  title: string
+  subtitle: string
+  iconName: string
+  color: string
+  accentBorder: string
+  items: {
+    name: string
+    highlight?: boolean
+    description?: string
+  }[]
+}
 
 export const skillCategories: SkillCategory[] = [
   {
+    id: 'programming',
     title: 'Programming Languages',
-    subtitle: 'Core languages for AI systems, backend, and applications',
-    iconName: 'Code2',
-    color: 'from-purple-500 to-indigo-500',
-    borderColor: 'hover:border-purple-500/50',
-    skills: [
-      { name: 'Python', level: 'Backend & AI', highlight: true },
-      { name: 'Dart', level: 'Mobile & Web', highlight: true },
-      { name: 'JavaScript', level: 'Frontend & Scripting' },
-      { name: 'TypeScript', level: 'Type-safe Apps' },
+    subtitle: 'Core foundations for scalable algorithms and software engineering.',
+    iconName: 'code',
+    color: '#8B5CF6',
+    accentBorder: 'rgba(139, 92, 246, 0.4)',
+    items: [
+      { name: 'Python', highlight: true, description: 'Primary language for AI/ML, backend APIs, and data science' },
+      { name: 'Java', description: 'Strong grounding in OOP and enterprise application architectures' },
+      { name: 'Dart', description: 'Cross-platform mobile application development with Flutter' },
+      { name: 'JavaScript', description: 'Modern web scripting and dynamic interactive interfaces' },
+      { name: 'SQL', description: 'Relational schema design, queries, and transaction management' },
     ],
   },
   {
-    title: 'AI & Generative AI',
-    subtitle: 'LLMs, intelligent agents, RAG, and cognitive architectures',
-    iconName: 'Cpu',
-    color: 'from-cyan-400 to-blue-500',
-    borderColor: 'hover:border-cyan-400/50',
-    skills: [
-      { name: 'Large Language Models (LLMs)', highlight: true },
-      { name: 'OpenAI API', highlight: true },
-      { name: 'Prompt Engineering' },
-      { name: 'Retrieval-Augmented Generation (RAG)', highlight: true },
-      { name: 'LangChain', highlight: true },
-      { name: 'AI Agents' },
-      { name: 'LLM Integrations' },
-      { name: 'Hugging Face' },
+    id: 'ai-ml',
+    title: 'Artificial Intelligence & Machine Learning',
+    subtitle: 'Algorithms and mathematical models that learn from structured data.',
+    iconName: 'brain',
+    color: '#67E8F9',
+    accentBorder: 'rgba(103, 232, 249, 0.4)',
+    items: [
+      { name: 'Machine Learning', highlight: true, description: 'Supervised and unsupervised learning algorithms' },
+      { name: 'Natural Language Processing', highlight: true, description: 'Text tokenization, sentiment analysis, and intent parsing' },
+      { name: 'Computer Vision', highlight: true, description: 'Image preprocessing, feature extraction, and classification' },
+      { name: 'Scikit-learn', description: 'Model pipelines, preprocessing, regression, and classification' },
+      { name: 'Model Evaluation', description: 'Confusion matrices, precision, recall, and ROC-AUC curves' },
     ],
   },
   {
-    title: 'Backend Development',
-    subtitle: 'High-throughput APIs, databases, and microservices',
-    iconName: 'Server',
-    color: 'from-indigo-500 to-violet-600',
-    borderColor: 'hover:border-indigo-500/50',
-    skills: [
-      { name: 'FastAPI', highlight: true },
-      { name: 'Django' },
-      { name: 'REST APIs', highlight: true },
-      { name: 'WebSockets' },
-      { name: 'PostgreSQL', highlight: true },
-      { name: 'Firebase' },
+    id: 'gen-ai',
+    title: 'Generative AI & LLMs',
+    subtitle: 'Modern neural generation, embeddings, and context-augmented agents.',
+    iconName: 'sparkles',
+    color: '#C4B5FD',
+    accentBorder: 'rgba(196, 181, 253, 0.4)',
+    items: [
+      { name: 'Generative AI', highlight: true, description: 'Foundation models, generation dynamics, and multimodal AI' },
+      { name: 'Large Language Models (LLMs)', highlight: true, description: 'Context windows, reasoning capabilities, and prompt architectures' },
+      { name: 'OpenAI API', description: 'GPT integration, function calling, and structured outputs' },
+      { name: 'Anthropic API', description: 'Claude models integration and long-context processing' },
+      { name: 'LangChain', highlight: true, description: 'Chains, document loaders, and vector retrieval pipelines' },
+      { name: 'Prompt Engineering', description: 'Few-shot prompting, chain-of-thought, and system guidelines' },
+      { name: 'Embeddings', description: 'Dense vector representations of semantic text and code' },
+      { name: 'Retrieval-Augmented Generation (RAG)', highlight: true, description: 'Grounded generation with external contextual vector indices' },
+      { name: 'Pinecone', description: 'Managed cloud-native vector index querying' },
+      { name: 'FAISS', description: 'High-performance local vector similarity search' },
+      { name: 'Chroma', description: 'Lightweight open-source vector database' },
     ],
   },
   {
-    title: 'Frontend & Mobile',
-    subtitle: 'Fluid cross-platform interfaces and reactive UI',
-    iconName: 'Layout',
-    color: 'from-blue-400 to-indigo-500',
-    borderColor: 'hover:border-blue-400/50',
-    skills: [
-      { name: 'React.js', highlight: true },
-      { name: 'Flutter', highlight: true },
-      { name: 'HTML' },
-      { name: 'CSS' },
-      { name: 'Tailwind CSS', highlight: true },
+    id: 'backend',
+    title: 'Backend Engineering',
+    subtitle: 'High-throughput, clean RESTful architectures and modular services.',
+    iconName: 'server',
+    color: '#8B5CF6',
+    accentBorder: 'rgba(139, 92, 246, 0.4)',
+    items: [
+      { name: 'Django', description: 'Batteries-included full-featured Python web framework' },
+      { name: 'Flask', description: 'Lightweight microservices and RESTful API endpoints' },
+      { name: 'FastAPI', highlight: true, description: 'Modern, high-performance async Python APIs with Pydantic validation' },
+      { name: 'REST APIs', highlight: true, description: 'Stateless JSON endpoints, status codes, and HTTP verbs' },
+      { name: 'Object-Oriented Programming (OOP)', description: 'Polymorphism, encapsulation, inheritance, and modular codebases' },
     ],
   },
   {
-    title: 'Tools & Platforms',
-    subtitle: 'Containerization, version control, and developer workflows',
-    iconName: 'Wrench',
-    color: 'from-violet-400 to-cyan-500',
-    borderColor: 'hover:border-violet-400/50',
-    skills: [
-      { name: 'Git' },
-      { name: 'GitHub', highlight: true },
-      { name: 'Docker' },
-      { name: 'Vercel' },
-      { name: 'Postman' },
-      { name: 'VS Code' },
+    id: 'data-science',
+    title: 'Data Science & Analytics',
+    subtitle: 'Extracting clean statistical insights from complex real-world data.',
+    iconName: 'bar-chart-3',
+    color: '#67E8F9',
+    accentBorder: 'rgba(103, 232, 249, 0.4)',
+    items: [
+      { name: 'Pandas', highlight: true, description: 'DataFrames, series manipulation, vectorized operations' },
+      { name: 'NumPy', highlight: true, description: 'Multidimensional arrays, linear algebra, vector math' },
+      { name: 'Matplotlib', description: 'Static and interactive visual figures, distributions, and trends' },
+      { name: 'Exploratory Data Analysis (EDA)', description: 'Statistical profiling, hypothesis testing, and pattern discovery' },
+      { name: 'Data Cleaning', description: 'Missing value handling, outlier filtering, and data normalization' },
+    ],
+  },
+  {
+    id: 'web-mobile',
+    title: 'Web & Mobile Technologies',
+    subtitle: 'Cross-platform interfaces connecting users to intelligent backends.',
+    iconName: 'smartphone',
+    color: '#C4B5FD',
+    accentBorder: 'rgba(196, 181, 253, 0.4)',
+    items: [
+      { name: 'HTML5', description: 'Semantic, accessible document structure' },
+      { name: 'CSS3', description: 'Modern styling, layouts, and responsive transitions' },
+      { name: 'JavaScript', description: 'Client-side behavior, DOM manipulation, asynchronous fetch' },
+      { name: 'Node.js', description: 'JavaScript server runtime and package ecosystems' },
+      { name: 'Flutter', highlight: true, description: 'Cross-platform mobile application engineering with Dart' },
+    ],
+  },
+  {
+    id: 'dev-tools',
+    title: 'Development Tools & Databases',
+    subtitle: 'Version control, database management, and agile developer workflows.',
+    iconName: 'cpu',
+    color: '#8B5CF6',
+    accentBorder: 'rgba(139, 92, 246, 0.4)',
+    items: [
+      { name: 'Git', highlight: true, description: 'Branching strategies, commit history, and merge conflict resolution' },
+      { name: 'GitHub', highlight: true, description: 'Remote repositories, collaborative workflows, and code reviews' },
+      { name: 'SQL Databases', description: 'Relational schemas, queries, indexes, and integrity constraints' },
     ],
   },
 ]
+
