@@ -35,6 +35,12 @@ export const projects: ProjectItem[] = [
     featured: true,
     badgeColor: 'from-purple-500 to-indigo-600',
     githubUrl: 'https://github.com/Bhuvo',
+    liveDemoUrl: 'https://jobify-kappa-pearl.vercel.app/',
+    demoCredentials: {
+      email: 'bhu@gmail.com',
+      password: 'pass 123456',
+      note: 'Demo Account for interactive reviewer evaluation',
+    },
   },
   {
     id: 'auto-code-reviewer',

@@ -306,10 +306,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, ind
 
         {/* Card Body */}
         <div className="p-6">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-mono font-medium text-cyan-400">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <span className="text-xs font-mono font-medium text-cyan-400 truncate">
               {project.category}
             </span>
+            {project.demoCredentials && (
+              <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded-full border border-cyan-400/30 shrink-0 flex items-center gap-1 shadow-[0_0_8px_rgba(34,211,238,0.2)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                Live Demo
+              </span>
+            )}
           </div>
 
           <h3 className="text-xl font-bold text-white font-display group-hover:text-cyan-300 transition-colors">

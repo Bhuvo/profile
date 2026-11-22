@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, CheckCircle2, Cpu, ArrowRight, Layers, ShieldAlert, Sparkles } from 'lucide-react'
+import { X, ExternalLink, CheckCircle2, Cpu, ArrowRight, Layers, ShieldAlert, Sparkles, KeyRound } from 'lucide-react'
 import { GithubIcon } from '../UI/Icons'
 import type { ProjectItem } from '../../types'
 import { SuperbillComparison } from './SuperbillComparison'
@@ -78,6 +78,49 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <div className="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 text-[#C8C8DC] text-xs sm:text-sm leading-relaxed">
             {project.description}
           </div>
+
+          {/* Interactive Live Demo Access Callout */}
+          {project.demoCredentials && (
+            <div className="mt-6 p-4 rounded-2xl bg-gradient-to-r from-violet-950/60 via-[#151532] to-cyan-950/40 border border-cyan-400/30 text-white shadow-[0_0_20px_rgba(34,211,238,0.15)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 font-mono font-bold text-cyan-300 uppercase tracking-wider text-xs">
+                  <KeyRound className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <span>Instant Live Demo Access</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                  <span className="text-[#A1A1B5]">Email:</span>
+                  <span className="px-2 py-0.5 rounded bg-black/40 border border-white/10 text-white font-semibold selection:bg-cyan-500/30">
+                    {project.demoCredentials.email}
+                  </span>
+                  {project.demoCredentials.password && (
+                    <>
+                      <span className="text-[#A1A1B5] ml-1">Password:</span>
+                      <span className="px-2 py-0.5 rounded bg-black/40 border border-white/10 text-cyan-300 font-semibold selection:bg-cyan-500/30">
+                        {project.demoCredentials.password}
+                      </span>
+                    </>
+                  )}
+                </div>
+                {project.demoCredentials.note && (
+                  <p className="text-[11px] text-[#A1A1B5] leading-relaxed">
+                    {project.demoCredentials.note}
+                  </p>
+                )}
+              </div>
+
+              {project.liveDemoUrl && (
+                <a
+                  href={project.liveDemoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 shadow-md shadow-cyan-500/20 shrink-0 transition-all"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Launch Live App</span>
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Technical Accuracy & Privacy Notice for IPTrace */}
           {project.disclaimer && (

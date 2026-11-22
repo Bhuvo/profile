@@ -81,6 +81,11 @@ export interface ProjectItem {
   }
   githubUrl?: string
   liveDemoUrl?: string
+  demoCredentials?: {
+    email: string
+    password?: string
+    note?: string
+  }
   featured: boolean
   badgeColor?: string
 }

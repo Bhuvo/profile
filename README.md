@@ -87,6 +87,7 @@ graph TD
 
 ### 1. 💼 Jobify — AI-Powered Recruitment Platform
 > *An AI-powered recruitment ecosystem designed to simplify job discovery, resume analysis, and candidate-job matching.*
+- **Live Demo**: [https://jobify-kappa-pearl.vercel.app/](https://jobify-kappa-pearl.vercel.app/) *(Demo login: `bhu@gmail.com` / `pass 123456`)*
 - **Features**: 13-section interactive resume builder, semantic ATS scoring, candidate-to-job matching with 90% accuracy, automated skill gap roadmaps.
 - **Tech Stack**: Flutter, Python, FastAPI, Firebase, OpenAI API, Next.js
 - **Architecture**: `Frontend (Flutter/Next.js) → FastAPI Gateway → OpenAI Async Semantic Engine → Firebase Storage`

@@ -49,11 +49,11 @@ export const aiKnowledgeBase: KnowledgeEntry[] = [
     suggestions: ['Tell me more about Jobify', 'Tell me about Auto Code Reviewer', 'Can I download his resume?'],
   },
   {
-    keywords: ['jobify', 'recruitment', 'ats', 'resume analysis'],
+    keywords: ['jobify', 'recruitment', 'ats', 'resume analysis', 'live demo', 'login', 'credentials'],
     question: 'What is Jobify?',
     answer:
-      "Jobify is an AI-powered recruitment platform designed to simplify job discovery, resume analysis, and candidate matching. It features ATS compatibility scoring, automated skill gap insights, an interactive 13-section resume builder, and an architecture spanning Flutter/Next.js frontend, FastAPI backend, and OpenAI models.",
-    suggestions: ['What technologies were used in Jobify?', 'Tell me about Auto Code Reviewer', 'Download his resume'],
+      "Jobify is an AI-powered recruitment platform designed to simplify job discovery, resume analysis, and candidate matching. It features ATS compatibility scoring, automated skill gap insights, an interactive 13-section resume builder, and an architecture spanning Flutter/Next.js frontend, FastAPI backend, and OpenAI models.\n\n🌐 **Live Demo**: [jobify-kappa-pearl.vercel.app](https://jobify-kappa-pearl.vercel.app/)\n🔑 **Demo Credentials**: Email: `bhu@gmail.com` | Password: `pass 123456`",
+    suggestions: ['Launch Jobify live demo', 'What technologies were used in Jobify?', 'Tell me about Auto Code Reviewer'],
   },
   {
     keywords: ['reviewer', 'code reviewer', 'auto code reviewer', 'github pr', 'pull request'],
