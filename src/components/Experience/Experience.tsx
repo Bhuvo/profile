@@ -1,12 +1,21 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin, Zap, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Briefcase, Calendar, MapPin, Zap, ChevronRight, ChevronDown, CheckCircle2, Award } from "lucide-react";
 import { experiences } from "../../data/experience";
 import type { ExperienceItem } from "../../types";
 import { SectionHeading } from "../UI/SectionHeading";
 import { SpotlightCard } from "../UI/SpotlightCard";
 
 export const Experience: React.FC = () => {
+  const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (id: string) => {
+    setExpandedIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   return (
     <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto">
@@ -30,6 +39,7 @@ export const Experience: React.FC = () => {
           <div className="flex flex-col gap-12 md:gap-16">
             {experiences.map((exp: ExperienceItem, index: number) => {
               const isEven = index % 2 === 0;
+              const isExpanded = !!expandedIds[exp.id];
 
               return (
                 <div
@@ -99,21 +109,94 @@ export const Experience: React.FC = () => {
                         </p>
                       )}
 
-                      {/* Bullet Descriptions */}
-                      <ul className="flex flex-col gap-2.5 mb-5">
-                        {exp.contributions.map((desc: string, dIdx: number) => (
-                          <li
-                            key={dIdx}
-                            className="flex items-start gap-2.5 text-xs sm:text-sm text-[#C8C8DC] leading-relaxed"
-                          >
-                            <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                            <span>{desc}</span>
-                          </li>
-                        ))}
+                      {/* Contributions List (Shows top 2 when collapsed, all when expanded) */}
+                      <ul className="flex flex-col gap-2.5 mb-4">
+                        {(isExpanded ? exp.contributions : exp.contributions.slice(0, 2)).map(
+                          (desc: string, dIdx: number) => (
+                            <li
+                              key={dIdx}
+                              className="flex items-start gap-2.5 text-xs sm:text-sm text-[#C8C8DC] leading-relaxed"
+                            >
+                              <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                              <span>{desc}</span>
+                            </li>
+                          )
+                        )}
                       </ul>
 
-                      {/* Key Highlight / Benchmark Achievement Callout */}
-                      {exp.achievement && (
+                      {/* Expandable "View Experience Details" Trigger */}
+                      <div className="mb-4">
+                        <button
+                          onClick={() => toggleExpand(exp.id)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:text-white transition-colors cursor-pointer group/btn py-1"
+                          aria-expanded={isExpanded}
+                        >
+                          <span>{isExpanded ? "Collapse Experience Details" : "View Experience Details"}</span>
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                              isExpanded ? "rotate-180" : "group-hover/btn:translate-y-0.5"
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      {/* Expanded Drawer */}
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden space-y-4 mb-4 border-t border-white/10 pt-4"
+                          >
+                            {/* Key Responsibilities */}
+                            {exp.keyResponsibilities && exp.keyResponsibilities.length > 0 && (
+                              <div className="space-y-2">
+                                <h4 className="text-[11px] font-mono uppercase tracking-wider text-purple-300 font-bold flex items-center gap-1.5">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                                  <span>Core Responsibilities</span>
+                                </h4>
+                                <div className="grid grid-cols-1 gap-1.5">
+                                  {exp.keyResponsibilities.map((resp, rIdx) => (
+                                    <div
+                                      key={rIdx}
+                                      className="flex items-start gap-2 text-xs text-[#C8C8DC] p-2 rounded-lg bg-white/5 border border-white/5"
+                                    >
+                                      <span className="text-cyan-400 text-[10px] mt-0.5">•</span>
+                                      <span>{resp}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Key Achievements */}
+                            {exp.achievements && exp.achievements.length > 0 && (
+                              <div className="space-y-2">
+                                <h4 className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 font-bold flex items-center gap-1.5">
+                                  <Award className="w-3.5 h-3.5 text-cyan-400" />
+                                  <span>Key Achievements</span>
+                                </h4>
+                                <div className="space-y-1.5">
+                                  {exp.achievements.map((ach, aIdx) => (
+                                    <div
+                                      key={aIdx}
+                                      className="p-2.5 rounded-xl border border-cyan-400/30 bg-cyan-500/10 text-cyan-200 text-xs flex items-start gap-2 shadow-[0_0_12px_rgba(34,211,238,0.1)]"
+                                    >
+                                      <Zap className="w-3.5 h-3.5 text-cyan-300 shrink-0 mt-0.5" />
+                                      <span>{ach}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Main Achievement Highlight (When Collapsed) */}
+                      {exp.achievement && !isExpanded && (
                         <div className="p-3.5 rounded-xl border border-cyan-400/30 bg-cyan-500/10 text-cyan-200 text-xs sm:text-sm font-medium flex items-start gap-2.5 mb-5 shadow-[0_0_15px_rgba(34,211,238,0.1)]">
                           <Zap className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
                           <div>

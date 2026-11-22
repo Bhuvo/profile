@@ -21,11 +21,18 @@ export const aiKnowledgeBase: KnowledgeEntry[] = [
     suggestions: ['Tell me about his AI & GenAI projects', 'What is his experience with Flutter?', 'How can I contact him?'],
   },
   {
-    keywords: ['experience', 'work', 'job', 'company', 'dataterrain', 'loopd', 'tcr', 'career', 'history'],
+    keywords: ['experience', 'work', 'job', 'company', 'dataterrain', 'timesmed', 'loopd', 'tcr', 'career', 'history'],
     question: 'Where has Bhuvaneswaran worked?',
     answer:
-      "His professional journey includes:\n1. **DataTerrain INC** (Software Developer): Worked on software development, Flutter application engineering, production performance optimization, and improved Superbill template menu navigation latency from ~1s to 98ms.\n2. **LOOPD DIGITAL SOLUTION** (Co-Founder, Feb 2023 – Nov 2023): Co-founded a digital solutions initiative delivering application development and digital products.\n3. **TCR Innovation** (Data Visualization Intern, Aug 2022 – Nov 2022): Worked on data analytics and visualization concepts.",
-    suggestions: ['Tell me about the Superbill optimization', 'What projects has he built?', 'What is his education?'],
+      "His professional journey includes:\n1. **DataTerrain INC** (Software Developer, Professional Experience): Worked on software development, Flutter application engineering, production performance optimization, and improved Superbill template menu navigation latency from ~1s to 98ms.\n2. **TimesMed** (Flutter Developer, April 2024 – May 2025): Delivered 5+ healthcare & telemedicine mobile applications and 3 websites, optimizing performance by 25% and cutting appointment wait times by 50%.\n3. **LOOPD DIGITAL SOLUTION** (Co-Founder, Feb 2023 – Nov 2023): Co-founded a digital solutions initiative delivering application development and digital products.\n4. **TCR Innovation** (Data Visualization Intern, Aug 2022 – Nov 2022): Worked on data analytics and visualization concepts.",
+    suggestions: ['What did he build at TimesMed?', 'Tell me about the Superbill optimization', 'What projects has he built?'],
+  },
+  {
+    keywords: ['timesmed', 'timemed', 'telemedicine', 'healthcare', 'focus', 'wego'],
+    question: 'What did Bhuvaneswaran do at TimesMed?',
+    answer:
+      "At TimesMed (April 2024 – May 2025), Bhuvaneswaran served as a **Flutter Developer**. He delivered 5+ production mobile apps and 3 websites across healthcare, telemedicine, and utility domains (including TimesMed Focus and TimesMed Wego). He engineered real-time consultation features using WebSockets and Firebase, cut appointment wait times by 50%, and boosted UI/UX responsiveness scores by 35% with clean BLoC/Provider architecture.",
+    suggestions: ['Tell me about his DataTerrain experience', 'What are his primary technical skills?', 'What projects has he built?'],
   },
   {
     keywords: ['superbill', 'optimization', 'performance', 'latency', '98ms', 'benchmark', 'speed'],

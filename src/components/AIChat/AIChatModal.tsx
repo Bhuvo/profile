@@ -74,7 +74,7 @@ export const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => 
     // Default polite response with suggested topics
     return {
       answer:
-        "I'm specialized in Bhuvaneswaran's engineering background! You can ask about his:\n• **Technical Skills** (Python, Flutter, LLMs, RAG, FastAPI)\n• **DataTerrain Experience** & the 98ms Superbill optimization\n• **Projects** like Jobify, Auto Code Reviewer, and Foode\n• **Target Roles** and contact information.",
+        "I'm specialized in Bhuvaneswaran's engineering background! You can ask about his:\n• **Technical Skills** (Python, Flutter, LLMs, RAG, FastAPI)\n• **Experience at DataTerrain & TimesMed** (and the 98ms Superbill optimization)\n• **Projects** like Jobify, Auto Code Reviewer, IPTrace, and Foode\n• **Target Roles** and contact information.",
       suggestions: [
         'What are his core technical skills?',
         'Tell me about his work experience',

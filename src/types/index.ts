@@ -47,7 +47,9 @@ export interface ExperienceItem {
   isCurrent?: boolean
   summary: string
   contributions: string[]
+  keyResponsibilities?: string[]
   achievement?: string
+  achievements?: string[]
   technologies: string[]
 }
 
