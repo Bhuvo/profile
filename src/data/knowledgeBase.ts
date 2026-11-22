@@ -24,7 +24,7 @@ export const aiKnowledgeBase: KnowledgeEntry[] = [
     keywords: ['experience', 'work', 'job', 'company', 'dataterrain', 'loopd', 'tcr', 'career', 'history'],
     question: 'Where has Bhuvaneswaran worked?',
     answer:
-      "His professional journey includes:\n1. **DataTerrain INC** (Software Developer): Worked on software development, Flutter application engineering, GridSocial optimization, and improved Superbill template menu navigation latency from ~1s to 98ms.\n2. **LOOPD DIGITAL SOLUTION** (Co-Founder, Feb 2023 – Nov 2023): Co-founded a digital solutions initiative delivering application development and digital products.\n3. **TCR Innovation** (Data Visualization Intern, Aug 2022 – Nov 2022): Worked on data analytics and visualization concepts.",
+      "His professional journey includes:\n1. **DataTerrain INC** (Software Developer): Worked on software development, Flutter application engineering, production performance optimization, and improved Superbill template menu navigation latency from ~1s to 98ms.\n2. **LOOPD DIGITAL SOLUTION** (Co-Founder, Feb 2023 – Nov 2023): Co-founded a digital solutions initiative delivering application development and digital products.\n3. **TCR Innovation** (Data Visualization Intern, Aug 2022 – Nov 2022): Worked on data analytics and visualization concepts.",
     suggestions: ['Tell me about the Superbill optimization', 'What projects has he built?', 'What is his education?'],
   },
   {
@@ -38,7 +38,7 @@ export const aiKnowledgeBase: KnowledgeEntry[] = [
     keywords: ['projects', 'built', 'portfolio', 'jobify', 'reviewer', 'foode', 'github'],
     question: 'What featured projects has he built?',
     answer:
-      "Key projects include:\n• **Jobify**: AI-powered recruitment platform with resume parsing, 13-section builder, ATS scoring, and candidate-job matching (Flutter, Python, FastAPI, OpenAI API).\n• **Auto Code Reviewer**: LLM-driven code review platform analyzing GitHub PRs for bugs, architecture, and code quality.\n• **Foode**: Restaurant and food delivery engine managing real-time orders, space/table reservations, and billing (Flutter, Django, PostgreSQL).\n• **GridSocial & Superbill Optimizations**: High-performance UI rendering and navigation speedups.",
+      "Key projects include:\n• **Jobify**: AI-powered recruitment platform with resume parsing, 13-section builder, ATS scoring, and candidate-job matching (Flutter, Python, FastAPI, OpenAI API).\n• **Auto Code Reviewer**: LLM-driven code review platform analyzing GitHub PRs for bugs, architecture, and code quality.\n• **IPTrace**: Advanced IP Geolocation & Visitor Analytics platform (Python, Flask, SQLite, Chart.js, Leaflet.js).\n• **Foode**: Restaurant and food delivery engine managing real-time orders, space/table reservations, and billing (Flutter, Django, PostgreSQL).\n• **Superbill Performance Optimization**: High-performance medical menu navigation latency reduction from ~1000ms to 98ms.",
     suggestions: ['Tell me more about Jobify', 'Tell me about Auto Code Reviewer', 'Can I download his resume?'],
   },
   {
@@ -53,7 +53,14 @@ export const aiKnowledgeBase: KnowledgeEntry[] = [
     question: 'What is the Auto Code Reviewer project?',
     answer:
       "Auto Code Reviewer is an LLM-powered developer productivity tool that connects to GitHub webhooks. When pull requests are created, it analyzes code diffs, assesses architectural patterns and potential runtime bugs, and generates context-aware inline code review comments.",
-    suggestions: ['What stack does Auto Code Reviewer use?', 'What are his current focus areas?', 'Contact Bhuvaneswaran'],
+    suggestions: ['What stack does Auto Code Reviewer use?', 'Tell me about IPTrace', 'Contact Bhuvaneswaran'],
+  },
+  {
+    keywords: ['iptrace', 'geolocation', 'ip', 'visitor analytics', 'location-fetch', 'tracking', 'maps', 'flask'],
+    question: 'What is IPTrace?',
+    answer:
+      "IPTrace is a full-stack IP geolocation and visitor analytics platform built with Python and Flask. It generates unique tracking links, resolves visitor IP addresses across multiple geolocation providers in parallel, applies confidence scoring with automated centroid detection, and displays visitor analytics through interactive Leaflet maps and Chart.js dashboards. It includes 40 automated Pytest tests and rate-limited security.",
+    suggestions: ['What technologies were used in IPTrace?', 'View the live demo for IPTrace', 'Tell me about Jobify'],
   },
   {
     keywords: ['education', 'degree', 'college', 'university', 'btech', 'cgpa', 'grades', 'institute'],

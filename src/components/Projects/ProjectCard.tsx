@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Sparkles, Terminal, Activity, Layers } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Sparkles, Terminal, Activity, Layers, Globe, ShieldCheck, ExternalLink } from 'lucide-react'
 import { GithubIcon } from '../UI/Icons'
 import type { ProjectItem } from '../../types'
 
@@ -65,6 +65,159 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, ind
               <div className="text-cyan-400 flex items-center gap-1 text-[10px]">
                 <Sparkles className="w-3 h-3 shrink-0" />
                 <span>AI Review: Zero regression detected. Safe to merge.</span>
+              </div>
+            </div>
+          </div>
+        )
+
+      case 'iptrace':
+        return (
+          <div className="h-48 w-full bg-gradient-to-br from-[#070b1a] via-[#0b122c] to-[#12193b] p-4 sm:p-5 flex flex-col justify-between border-b border-white/5 relative overflow-hidden group">
+            {/* Ambient Radial Lighting Glow */}
+            <div className="absolute -top-10 -right-10 w-44 h-44 bg-cyan-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
+            <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-violet-600/15 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
+
+            {/* Futuristic Geospatial SVG World Canvas & Radar Arcs */}
+            <svg
+              className="absolute inset-0 w-full h-full opacity-40 group-hover:opacity-60 transition-opacity pointer-events-none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 400 190"
+              fill="none"
+            >
+              <defs>
+                <linearGradient id="geoArc" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#22D3EE" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#6366F1" stopOpacity="0.8" />
+                </linearGradient>
+                <pattern id="gridDots" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.8" fill="#A1A1B5" fillOpacity="0.18" />
+                </pattern>
+              </defs>
+
+              {/* Grid dots background */}
+              <rect width="100%" height="100%" fill="url(#gridDots)" />
+
+              {/* World Continent Vector Outlines */}
+              {/* North America */}
+              <path
+                d="M 45 40 Q 75 35 95 55 T 80 85 Q 55 95 40 70 Z"
+                fill="#8B5CF6"
+                fillOpacity="0.14"
+                stroke="#8B5CF6"
+                strokeWidth="0.8"
+                strokeOpacity="0.4"
+              />
+              {/* South America */}
+              <path
+                d="M 85 95 Q 110 100 105 130 T 90 155 Q 75 140 80 110 Z"
+                fill="#8B5CF6"
+                fillOpacity="0.12"
+                stroke="#8B5CF6"
+                strokeWidth="0.8"
+                strokeOpacity="0.35"
+              />
+              {/* Europe & Africa */}
+              <path
+                d="M 180 35 Q 215 30 225 55 T 200 80 Q 170 70 175 45 Z"
+                fill="#6366F1"
+                fillOpacity="0.14"
+                stroke="#6366F1"
+                strokeWidth="0.8"
+                strokeOpacity="0.4"
+              />
+              <path
+                d="M 185 85 Q 225 80 230 115 T 210 160 Q 175 145 180 105 Z"
+                fill="#6366F1"
+                fillOpacity="0.12"
+                stroke="#6366F1"
+                strokeWidth="0.8"
+                strokeOpacity="0.35"
+              />
+              {/* Asia & India */}
+              <path
+                d="M 230 40 Q 305 30 330 75 T 290 105 Q 240 100 235 60 Z"
+                fill="#22D3EE"
+                fillOpacity="0.14"
+                stroke="#22D3EE"
+                strokeWidth="0.8"
+                strokeOpacity="0.4"
+              />
+              {/* Oceania */}
+              <path
+                d="M 310 120 Q 345 115 350 140 T 325 160 Q 295 150 305 130 Z"
+                fill="#22D3EE"
+                fillOpacity="0.12"
+                stroke="#22D3EE"
+                strokeWidth="0.8"
+                strokeOpacity="0.35"
+              />
+
+              {/* Glowing Dynamic Connection Arcs */}
+              <path
+                d="M 70 65 Q 150 15 205 60"
+                stroke="url(#geoArc)"
+                strokeWidth="1.5"
+                strokeDasharray="4 3"
+                className="animate-pulse"
+              />
+              <path
+                d="M 205 60 Q 255 35 285 85"
+                stroke="url(#geoArc)"
+                strokeWidth="1.5"
+                strokeDasharray="5 3"
+              />
+              <path
+                d="M 70 65 Q 180 130 285 85"
+                stroke="#22D3EE"
+                strokeWidth="1"
+                strokeOpacity="0.6"
+                strokeDasharray="3 3"
+              />
+
+              {/* Pulsing Radar Geolocation Nodes */}
+              <circle cx="70" cy="65" r="3" fill="#22D3EE" />
+              <circle cx="70" cy="65" r="8" stroke="#22D3EE" strokeWidth="0.8" strokeOpacity="0.6" />
+
+              <circle cx="205" cy="60" r="3" fill="#8B5CF6" />
+              <circle cx="205" cy="60" r="7" stroke="#8B5CF6" strokeWidth="0.8" strokeOpacity="0.6" />
+
+              <circle cx="285" cy="85" r="3.5" fill="#22D3EE" />
+              <circle cx="285" cy="85" r="9" stroke="#22D3EE" strokeWidth="1" strokeOpacity="0.8" />
+            </svg>
+
+            {/* Top Header Pill with Live Telemetry */}
+            <div className="flex items-center justify-between z-10">
+              <span className="text-[10px] sm:text-[11px] font-mono text-cyan-300 bg-cyan-950/70 px-2.5 py-1 rounded-full border border-cyan-400/30 flex items-center gap-1.5 shadow-[0_0_12px_rgba(34,211,238,0.2)]">
+                <Globe className="w-3 h-3 text-cyan-400" />
+                <span>IPTRACE // GEOSPATIAL INTELLIGENCE</span>
+              </span>
+              <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                CONFIDENCE: HIGH
+              </span>
+            </div>
+
+            {/* Bottom Floating Telemetry Panel */}
+            <div className="z-10 grid grid-cols-2 gap-2 font-mono text-[10px]">
+              <div className="p-2 rounded-lg bg-[#080814]/85 border border-cyan-500/20 backdrop-blur-md flex flex-col justify-between">
+                <div className="text-[#A1A1B5] flex items-center gap-1">
+                  <Activity className="w-3 h-3 text-cyan-400" />
+                  <span>MULTI-PROVIDER</span>
+                </div>
+                <div className="text-white font-bold text-[11px] mt-0.5">
+                  Centroid Resolution
+                </div>
+              </div>
+
+              <div className="p-2 rounded-lg bg-[#080814]/85 border border-purple-500/20 backdrop-blur-md flex flex-col justify-between">
+                <div className="text-[#A1A1B5] flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-purple-400" />
+                  <span>TEST COVERAGE</span>
+                </div>
+                <div className="text-purple-300 font-bold text-[11px] mt-0.5">
+                  40 Pytest Suites
+                </div>
               </div>
             </div>
           </div>
@@ -164,7 +317,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, ind
           </h3>
 
           <p className="text-xs sm:text-sm text-[#A1A1B5] mt-2.5 leading-relaxed line-clamp-3">
-            {project.description}
+            {project.cardDescription || project.description}
           </p>
 
           {/* Key Features Preview (First 3) */}
@@ -182,7 +335,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, ind
 
           {/* Technology Badges */}
           <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-1.5">
-            {project.technologies.map((tech, tIdx) => (
+            {project.technologies.slice(0, 7).map((tech, tIdx) => (
               <span
                 key={tIdx}
                 className="px-2.5 py-1 rounded-md text-[11px] font-mono text-purple-200 bg-[#101020] border border-purple-500/20"
@@ -195,26 +348,40 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, ind
       </div>
 
       {/* Card Actions */}
-      <div className="p-6 pt-0 flex items-center justify-between gap-3">
+      <div className="p-6 pt-0 flex flex-wrap items-center justify-between gap-3">
         <button
           onClick={() => onSelect(project)}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:text-white transition-colors group/btn"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:text-white transition-colors group/btn cursor-pointer"
         >
           <span>View Architecture &amp; Details</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
         </button>
 
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg glass-panel text-[#A1A1B5] hover:text-white hover:border-purple-500/40 transition-colors"
-            aria-label="GitHub Repository"
-          >
-            <GithubIcon className="w-4 h-4" />
-          </a>
-        )}
+        <div className="flex items-center gap-2">
+          {project.liveDemoUrl && (
+            <a
+              href={project.liveDemoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 flex items-center gap-1.5 transition-all shadow-md shadow-purple-900/30"
+              aria-label="View Live Project"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Live Project</span>
+            </a>
+          )}
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg glass-panel text-[#A1A1B5] hover:text-white hover:border-purple-500/40 transition-colors"
+              aria-label="GitHub Repository"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </a>
+          )}
+        </div>
       </div>
     </motion.div>
   )

@@ -57,6 +57,10 @@ export interface ProjectItem {
   subtitle: string
   category: string
   description: string
+  cardDescription?: string
+  tagline?: string
+  disclaimer?: string
+  engineeringHighlights?: string[]
   problemStatement?: string
   solution?: string
   features: string[]

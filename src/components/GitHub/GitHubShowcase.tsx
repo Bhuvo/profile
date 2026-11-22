@@ -34,6 +34,17 @@ const fallbackRepos: GitHubRepo[] = [
   },
   {
     id: 3,
+    name: 'location-fetch',
+    description:
+      'Advanced IP Geolocation & visitor analytics platform built with Python, Flask, multi-provider querying, confidence scoring, and interactive maps.',
+    html_url: 'https://github.com/Bhuvo/location-fetch',
+    language: 'Python',
+    stargazers_count: 16,
+    forks_count: 3,
+    topics: ['python', 'flask', 'geolocation', 'analytics', 'leaflet'],
+  },
+  {
+    id: 4,
     name: 'Foode-Restaurant-Ops',
     description:
       'Unified food and dining management platform with real-time order lifecycle, multi-zone space coordination, and billing.',

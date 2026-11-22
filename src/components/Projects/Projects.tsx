@@ -10,14 +10,19 @@ export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null)
   const [filter, setFilter] = useState<string>('all')
 
-  const categories = ['all', 'AI & GenAI', 'Full Stack & Mobile', 'Performance Engineering']
+  const categories = ['all', 'AI & GenAI', 'Full Stack & Analytics', 'Performance Engineering']
 
   const filteredProjects = projects.filter((project) => {
     if (filter === 'all') return true
     if (filter === 'AI & GenAI')
       return project.category.includes('AI') || project.category.includes('Recruitment')
-    if (filter === 'Full Stack & Mobile')
-      return project.category.includes('Restaurant') || project.category.includes('Platform')
+    if (filter === 'Full Stack & Analytics')
+      return (
+        project.category.includes('Restaurant') ||
+        project.category.includes('Platform') ||
+        project.category.includes('Geolocation') ||
+        project.category.includes('Analytics')
+      )
     if (filter === 'Performance Engineering')
       return project.category.includes('Performance') || project.category.includes('Optimization')
     return true

@@ -12,12 +12,11 @@ export const experiences: ExperienceItem[] = [
       'Worked on software development and production application improvements.',
       'Contributed to application optimization and performance improvements.',
       'Worked on Flutter-based application development.',
-      'Contributed to GridSocial optimization work.',
       'Worked on Superbill template menu navigation performance improvement.',
     ],
     achievement:
       'Improved Superbill template menu navigation performance from approximately 1 second to 98 milliseconds.',
-    technologies: ['Flutter', 'Dart', 'Performance Profiling', 'GridSocial', 'State Management'],
+    technologies: ['Flutter', 'Dart', 'Performance Profiling', 'State Management'],
   },
   {
     id: 'loopd',

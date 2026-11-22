@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, CheckCircle2, Cpu, ArrowRight, Layers } from 'lucide-react'
+import { X, ExternalLink, CheckCircle2, Cpu, ArrowRight, Layers, ShieldAlert, Sparkles } from 'lucide-react'
 import { GithubIcon } from '../UI/Icons'
 import type { ProjectItem } from '../../types'
 import { SuperbillComparison } from './SuperbillComparison'
@@ -67,12 +67,30 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {project.title}
             </h3>
             <p className="text-sm font-mono text-purple-300">{project.subtitle}</p>
+            {project.tagline && (
+              <p className="text-xs sm:text-sm italic font-medium text-cyan-300/90 pt-1">
+                "{project.tagline}"
+              </p>
+            )}
           </div>
 
           {/* Description */}
-          <div className="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 text-[#A1A1B5] text-sm leading-relaxed">
+          <div className="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 text-[#C8C8DC] text-xs sm:text-sm leading-relaxed">
             {project.description}
           </div>
+
+          {/* Technical Accuracy & Privacy Notice for IPTrace */}
+          {project.disclaimer && (
+            <div className="mt-6 p-4 rounded-2xl bg-cyan-950/30 border border-cyan-400/30 text-cyan-200 shadow-[0_0_20px_rgba(34,211,238,0.1)]">
+              <div className="flex items-center gap-2 font-mono font-bold text-cyan-300 uppercase tracking-wider text-[11px] mb-1.5">
+                <ShieldAlert className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Technical Accuracy &amp; Privacy Notice</span>
+              </div>
+              <p className="text-xs leading-relaxed text-cyan-100/90">
+                {project.disclaimer}
+              </p>
+            </div>
+          )}
 
           {/* Special Benchmark Comparison if Superbill */}
           {project.id === 'superbill-optimization' && <SuperbillComparison />}
@@ -102,17 +120,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
           )}
 
-          {/* Key Features */}
+          {/* Core Features & Capabilities */}
           <div className="mt-6">
             <h4 className="text-xs font-mono uppercase tracking-wider text-purple-300 mb-3 flex items-center gap-2">
               <Cpu className="w-4 h-4 text-purple-400" />
-              <span>Core Features & Capabilities</span>
+              <span>Core Features &amp; Capabilities</span>
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {project.features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-xl bg-[#151528]/60 border border-white/5 flex items-start gap-2.5 text-xs text-[#A1A1B5]"
+                  className="p-3 rounded-xl bg-[#151528]/60 border border-white/5 flex items-start gap-2.5 text-xs text-[#C8C8DC]"
                 >
                   <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                   <span>{feature}</span>
@@ -121,29 +139,51 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
           </div>
 
+          {/* Documented Engineering Highlights */}
+          {project.engineeringHighlights && (
+            <div className="mt-6">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-300 mb-3 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cyan-400" />
+                <span>Documented Engineering Capabilities</span>
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {project.engineeringHighlights.map((highlight, hIdx) => (
+                  <div
+                    key={hIdx}
+                    className="p-3 rounded-xl bg-[#151528]/80 border border-violet-500/20 flex items-start gap-2.5 text-xs text-[#C8C8DC]"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <span>{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Architecture Overview */}
           {architecture && (
             <div className="mt-6 p-5 rounded-2xl bg-[#080812] border border-purple-500/20">
               <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-300 mb-3 flex items-center gap-2">
                 <Layers className="w-4 h-4 text-cyan-400" />
-                <span>Architecture & Data Flow</span>
+                <span>Architecture &amp; Data Flow</span>
               </h4>
 
               {/* Flow Steps */}
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 {architecture.flow.map((step, idx) => (
                   <React.Fragment key={idx}>
-                    <div className="px-3 py-1.5 rounded-lg text-xs font-mono text-purple-200 bg-purple-950/50 border border-purple-500/30">
-                      {step}
+                    <div className="px-3 py-1.5 rounded-lg text-xs font-mono text-purple-200 bg-purple-950/50 border border-purple-500/30 flex items-center gap-1.5 shadow-[0_0_10px_rgba(139,92,246,0.15)]">
+                      <span className="text-[10px] text-cyan-400 font-bold">{idx + 1}.</span>
+                      <span>{step}</span>
                     </div>
                     {idx < architecture.flow.length - 1 && (
-                      <ArrowRight className="w-3.5 h-3.5 text-[#A1A1B5] shrink-0" />
+                      <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                     )}
                   </React.Fragment>
                 ))}
               </div>
 
-              <p className="text-xs text-[#A1A1B5] leading-relaxed font-mono">
+              <p className="text-xs text-[#A1A1B5] leading-relaxed font-mono pt-1">
                 {architecture.summary}
               </p>
             </div>
@@ -172,32 +212,32 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               ID: {project.id}
             </div>
 
-            <div className="flex items-center gap-3">
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white glass-panel border-white/10 hover:border-purple-500/40 transition-colors"
-                >
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub Repository</span>
-                </a>
-              )}
+            <div className="flex flex-wrap items-center gap-3">
               {project.liveDemoUrl && (
                 <a
                   href={project.liveDemoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-600 to-cyan-500"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 shadow-lg shadow-cyan-500/25 transition-all"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span>Live Demo</span>
+                  <span>VIEW LIVE PROJECT</span>
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white glass-panel border border-white/10 hover:border-purple-500/40 hover:bg-white/5 transition-all"
+                >
+                  <GithubIcon className="w-4 h-4" />
+                  <span>EXPLORE SOURCE CODE</span>
                 </a>
               )}
               <button
                 onClick={onClose}
-                className="px-5 py-2 rounded-xl text-xs font-semibold text-[#A1A1B5] hover:text-white glass-panel transition-colors"
+                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-[#A1A1B5] hover:text-white glass-panel transition-colors cursor-pointer"
               >
                 Close
               </button>
