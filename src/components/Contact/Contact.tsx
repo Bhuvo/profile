@@ -266,9 +266,32 @@ export const Contact: React.FC = () => {
 
               {/* Subject */}
               <div className="space-y-1.5">
-                <label className="text-xs font-mono uppercase tracking-wider text-[#A1A1B5]">
-                  Subject <span className="text-red-400">*</span>
-                </label>
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-mono uppercase tracking-wider text-[#A1A1B5]">
+                    Subject <span className="text-red-400">*</span>
+                  </label>
+                  <span className="text-[10px] font-mono text-cyan-400">Quick Select:</span>
+                </div>
+                
+                {/* Quick Subject Chips */}
+                <div className="flex flex-wrap gap-1.5 pb-1">
+                  {[
+                    '💼 Full-Time Role Opportunity',
+                    '🤖 AI Project Collaboration',
+                    '📱 Flutter App Engineering',
+                    '⚡ Performance Audit'
+                  ].map((topic) => (
+                    <button
+                      key={topic}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, subject: topic }))}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-mono text-[#A1A1B5] bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:text-cyan-300 hover:bg-white/10 transition-all cursor-pointer"
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
+
                 <input
                   type="text"
                   name="subject"

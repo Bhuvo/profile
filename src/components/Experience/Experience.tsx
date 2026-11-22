@@ -1,8 +1,10 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin, Zap, ChevronRight } from "lucide-react";
 import { experiences } from "../../data/experience";
 import type { ExperienceItem } from "../../types";
 import { SectionHeading } from "../UI/SectionHeading";
+import { SpotlightCard } from "../UI/SpotlightCard";
 
 export const Experience: React.FC = () => {
   return (
@@ -16,8 +18,14 @@ export const Experience: React.FC = () => {
 
         {/* Timeline Container */}
         <div className="relative mt-12">
-          {/* Vertical Glowing Line */}
-          <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-cyan-400 via-violet-500 to-indigo-600/20" />
+          {/* Vertical Glowing Line with Traveling Beam */}
+          <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-cyan-400 via-violet-500 to-indigo-600/20 overflow-hidden">
+            <motion.div
+              className="w-full h-32 bg-gradient-to-b from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_#22D3EE]"
+              animate={{ y: ["-100%", "500%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
 
           <div className="flex flex-col gap-12 md:gap-16">
             {experiences.map((exp: ExperienceItem, index: number) => {
@@ -51,7 +59,10 @@ export const Experience: React.FC = () => {
                       isEven ? "md:pr-12" : "md:pl-12"
                     }`}
                   >
-                    <div className="group relative p-6 sm:p-7 rounded-2xl border border-white/10 bg-[#151528]/80 hover:border-violet-500/50 hover:bg-[#1A1A32] backdrop-blur-xl transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(139,92,246,0.2)]">
+                    <SpotlightCard
+                      spotlightColor="rgba(139, 92, 246, 0.2)"
+                      className="group relative p-6 sm:p-7 rounded-2xl border border-white/10 bg-[#151528]/80 hover:border-violet-500/50 backdrop-blur-xl transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(139,92,246,0.2)]"
+                    >
                       {/* Header with Role & Duration */}
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 border border-violet-500/30 text-violet-300">
@@ -123,7 +134,7 @@ export const Experience: React.FC = () => {
                           </span>
                         ))}
                       </div>
-                    </div>
+                    </SpotlightCard>
                   </div>
                 </div>
               );

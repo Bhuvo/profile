@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CustomCursor } from './components/UI/CustomCursor'
 import { ParticlesBackground } from './components/UI/ParticlesBackground'
 import { ScrollToTop } from './components/UI/ScrollToTop'
+import { ScrollProgressBar } from './components/UI/ScrollProgressBar'
 import { Navbar } from './components/Navbar/Navbar'
 import { Hero } from './components/Hero/Hero'
 import { About } from './components/About/About'
@@ -22,6 +23,9 @@ export function App() {
 
   return (
     <div className="relative min-h-screen bg-[#080812] text-white selection:bg-purple-500/30 selection:text-cyan-300">
+      {/* Scroll Reading Progress Bar */}
+      <ScrollProgressBar />
+
       {/* Interactive Custom Desktop Cursor */}
       <CustomCursor />
 
